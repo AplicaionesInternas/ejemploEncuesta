@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helisa</title>
+    <style>
+
+@font-face {
+  font-family: 'caviarDreams';
+  src: url('assets/fonts/CaviarDreams_Bold.ttf');
+}
+
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      background-image: url("assets/img_important/fondoEncuesta.png");
+      
+    }
+  .modal{
+    background-color:rgba(0, 0, 0, 0.61);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    font-family: calibri;
+    max-width: 1600px;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgb(0, 0, 0, .5);
+  }
+
+  .ratingDescription, .ratingSubDescription{
+    text-align: center;
+  }
+
+  .ratingDescription{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: caviarDreams;
+  }
+
+  .ratingContainer p{
+    margin: 30px 0;
+    font-size: 18px;
+    color: rgb(47, 47, 47);
+  }
+
+  .ratingContainer div{
+    display: flex;
+    justify-content: center;
+  }
+
+  .radio-hidden {
+    display: none;
+  }
+
+  .calification-label {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: rgb(153, 153, 153);
+    color: rgb(95, 95, 95);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .calification-label:hover{
+    background-color: #2e21a4;
+    border: 2px solid #130b60;
+    color: #fff;
+  }
+
+  .radio-hidden:checked + .calification-label {
+    background-color:#2e21a4;
+    border-color: #130b60;
+    color: #fff;
+  }
+
+  button{
+    width: 100%;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #1c0f98;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color .2s ease-in;
+  }
+
+  button:hover{
+    background-color:#2e21a4
+  }
+
+  @media (max-width: 1033px) {
+      .container {
+        width: 70%;
+      }
+    }
+
+    
+  @media (max-width: 550px) {
+      .container {
+        width: 90%;
+      }
+
+      .calification-label{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+      }
+
+      body{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .ratingDescription{
+        font-size: 16px;
+      }
+    }
+</style>
+</head>
+<body>
+    <div class="modal">
+      <div class="container">
+        <form action="controllers/process.php" method="POST">
+            <p class="ratingDescription"><b>Por favor, califica el servicio prestado de 1 a 5, donde 1 es poco satisfactorio y 5 es muy satisfactorio</b>.</p>
+            <hr>
+            <div class="ratingContainer">
+              <p><b>1.</b> Califique de 1 a 5 el tiempo de respuesta brindado por el asesor:</p>
+              <div>
+                <input type="radio" name="tiempoRespuesta" id="respuesta1" value="1" class="radio-hidden">
+                <label for="respuesta1" class="calification-label">1</label>
+
+                <input type="radio" name="tiempoRespuesta" id="respuesta2" value="2" class="radio-hidden">
+                <label for="respuesta2" class="calification-label">2</label>
+
+                <input type="radio" name="tiempoRespuesta" id="respuesta3" value="3" class="radio-hidden">
+                <label for="respuesta3" class="calification-label">3</label>
+
+                <input type="radio" name="tiempoRespuesta" id="respuesta4" value="4" class="radio-hidden">
+                <label for="respuesta4" class="calification-label">4</label>
+
+                <input type="radio" name="tiempoRespuesta" id="respuesta5" value="5" class="radio-hidden">
+                <label for="respuesta5" class="calification-label">5</label>
+              </div>
+            </div>
+
+            <div class="ratingContainer">
+              <p><b>2.</b> Califique de 1 a 5 la atención brindada por el asesor:</p>
+              <div>
+                <input type="radio" name="atencion" id="atencion1" value="1" class="radio-hidden">
+                <label for="atencion1" class="calification-label">1</label>
+
+                <input type="radio" name="atencion" id="atencion2" value="2" class="radio-hidden">
+                <label for="atencion2" class="calification-label">2</label>
+
+                <input type="radio" name="atencion" id="atencion3" value="3" class="radio-hidden">
+                <label for="atencion3" class="calification-label">3</label>
+
+                <input type="radio" name="atencion" id="atencion4" value="4" class="radio-hidden">
+                <label for="atencion4" class="calification-label">4</label>
+
+                <input type="radio" name="atencion" id="atencion5" value="5" class="radio-hidden">
+                <label for="atencion5" class="calification-label">5</label>
+              </div>
+            </div>
+            <input type="hidden" value="<?= $_GET["id_caso"]; ?>" name="id_caso">
+            <button type="submit">Enviar encuesta</button>
+        </form>
+       </div>
+    </div>
+</body>
+</html>
